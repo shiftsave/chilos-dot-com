@@ -1,5 +1,3 @@
-# My Boilerplate
-
 ## Setup & Dev Mode
 
 1. Install node
