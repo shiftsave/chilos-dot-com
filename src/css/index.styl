@@ -1,12 +1,176 @@
-ease-out-quart = cubic-bezier(0.165, 0.84, 0.44, 1)
 
-tablet = 30em
+/*
+ * Variables
+*/
+
+$ease = cubic-bezier(.165, .84, .44, 1)
+
+$colorAccent = #F15B49
+$colorPrimary = #000
+$colorSecondary = #5EE0D5
+$colorWhite = #FFF
+
+$small = 480px
+$medium = 960px
+$large = 1200px
+
+$font = 'Dosis', sans-serif
+$fontIcon= 'FontAwesome', sans-serif
+
+$arrowSize = 40px
+$arrowMiddle = $arrowSize*-1
+
+/*
+ * Mixins
+*/
+
 above($width)
   @media (min-width: $width)
     {block}
 
-html, body
-  height 100%
 
-body
+/*
+ * Custom Styles
+*/
+
+// Bases Styles
+
+html, body
+  background $colorAccent
+  height 100%
+  margin 0
+  padding 0
+  position relative
+
+h1,
+h2
+  color $colorPrimary
+  font-family $font
+  margin 0
+  padding 24px
+  text-transform uppercase
+
+h1
+  font-size 24px
+  letter-spacing 2px
+  line-height 48px
+
+  +above($small)
+    font-size 32px
+
+h2
+  font-size 16px
+  letter-spacing 1px
+  line-height 24px
+
+  +above($small)
+    font-size 18px
+
+a
+  color $colorPrimary
+  position relative
+  text-decoration none
+
+  span
+    border-bottom 2px solid $colorWhite
+    bottom -1px
+    height 1px
+    position absolute
+    transition 400ms $ease
+    width 0
+
+  &:hover
+    span
+      width 100%
+
+span
+  padding 4px 0
+
+// Custom Styles
+
+.container
+  align-items center
+  display flex
+  height 100%
+  justify-content center
+  width 100%
+
+
+.content
+  align-items center
+  border-bottom 2px solid $colorPrimary
+  border-top 2px solid $colorPrimary
+  display flex
+  flex-direction column
   font-family sans-serif
+  justify-content center
+
+.logo
+  max-width 300px
+  padding 24px 32px
+
+  +above($small)
+    max-width 400px
+
+.info
+  border-bottom 2px solid $colorPrimary
+  border-top 2px solid $colorPrimary
+  display flex
+  justify-content center
+  padding 0
+
+  h1
+    border-right 2px solid $colorPrimary
+
+  a,
+  span
+    display block
+
+.icons
+  font-family $fontIcon
+  padding 24px 0
+
+  .icon
+    border 2px solid $colorPrimary
+    border-radius 100px
+    display inline-block
+    font-size 24px
+    height 48px
+    margin 0 8px
+    position relative
+    transition all 300ms $ease
+    width 48px
+
+    a
+      display block
+      height 100%
+      line-height 48px
+      position absolute
+      text-align center
+      width 100%
+
+    &:hover
+      border-color $colorWhite
+      transform scale(1.1)
+
+// Arrows
+
+.top,
+.bottom
+  height 0
+  left 50%
+  position fixed
+  width 0
+  transform translateX($arrowMiddle)
+
+.top
+  border-left $arrowSize solid transparent
+  border-right $arrowSize solid transparent
+  border-top $arrowSize solid $colorSecondary
+  top 0
+
+.bottom
+  border-bottom $arrowSize solid $colorSecondary
+  border-left $arrowSize solid transparent
+  border-right $arrowSize solid transparent
+  bottom 0
